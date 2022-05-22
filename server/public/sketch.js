@@ -2,6 +2,9 @@ let list = document.querySelectorAll('.navigation li');
 let toggle = document.querySelector('.toggle');
 let navigation = document.querySelector('.navigation');
 let main = document.querySelector('.main');
+let tablename = document.getElementById('name');
+let fila = document.getElementById('fila');
+let html = '';
 
 // -[ Sidebar Animation ]-
 function activeLink(){
@@ -28,14 +31,30 @@ let income_count = (customers_count*1200).toLocaleString('en-US');
 customersDOM.innerHTML = customers_count;
 income.innerHTML = income_count;
 
+// -[ Fetch Data on page Load ]-
 let data = fetch('/api/users')
 .then(response =>{
     // -[ Response Handler ]-
     response = response.json()
     .then(res=>{
-        console.log(res);
+        arrayPacientes = res.listaPacientes;
+        arrayPacientes.forEach(element => {
+            console.log(element.name);
+            // -[ Table Construction ]-
+            let htmlSegment = `
+            <tr>
+                <td id="name">${element.name}</td>
+                <td>$1,200</td>
+                <td>Pagado</td>
+                <td><span class="status delivered">Activo</span></td>
+            </tr>
+            `;
+            html += htmlSegment;
+        });
+        fila.innerHTML=html;
     })
 })
 .catch(error =>{
     // -[ Error Handler ]-
+    console.log(error);
 })

@@ -17,8 +17,8 @@ router.get("/users", (req, res) => {
   userSchema
     .find()
     .then((data) => {
-      listaEstudiantes = data;
-      res.json({listaEstudiantes: data})})
+      listaPacientes = data;
+      res.json({listaPacientes: data})})
     .catch((error) => res.json({ message: error }));
 });
 

@@ -12,6 +12,7 @@ function activeLink(){
         item.classList.remove('hovered'));
         this.classList.add('hovered');
 }
+
 list.forEach((item)=>
 item.addEventListener('mouseover',activeLink));
 
@@ -24,37 +25,66 @@ toggle.onclick = function (){
 // -[ Cards Data Processing ]-
 let customersDOM = document.getElementById('customers');
 let income = document.getElementById('income');
-let customers_count = 26;
-let income_count = (customers_count*1200).toLocaleString('en-US');
 
-// -[ Insert Processed Data into DOM Elements ]-
-customersDOM.innerHTML = customers_count;
-income.innerHTML = income_count;
-
-// -[ Fetch Data on page Load ]-
-let data = fetch('/api/users')
-.then(response =>{
-    // -[ Response Handler ]-
-    response = response.json()
-    .then(res=>{
-        arrayPacientes = res.listaPacientes;
-        arrayPacientes.forEach(element => {
-            console.log(element.name);
-            // -[ Table Construction ]-
-            let htmlSegment = `
-            <tr>
-                <td id="name">${element.name}</td>
-                <td>$1,200</td>
-                <td>Pagado</td>
-                <td><span class="status delivered">Activo</span></td>
-            </tr>
-            `;
-            html += htmlSegment;
-        });
-        fila.innerHTML=html;
+function getCustomersCount() {
+    fetch('/api/users')
+    .then(response =>{
+        // -[ Response Handler ]-
+        response = response.json()
+        .then(res=>{
+            numPacientes = res.listaPacientes.length;
+            console.log(numPacientes);
+        })
     })
-})
-.catch(error =>{
-    // -[ Error Handler ]-
-    console.log(error);
-})
+}
+getCustomersCount();
+
+function fillTable() {
+    // -[ Fetch Data on page Load ]-
+    fetch('/api/users')
+    .then(response =>{
+        // -[ Response Handler ]-
+        response = response.json()
+        .then(res=>{
+            arrayPacientes = res.listaPacientes;
+            arrayPacientes.forEach(element => {
+                console.log(element.name);
+                // -[ Table Construction ]-
+                let htmlSegment = `
+                <tr>
+                    <td class="name" id="name">${element.name}</td>
+                    <td>$1,200</td>
+                    <td>Pagado</td>
+                    <td><span class="status delivered">Activo</span></td>
+                </tr>
+                `;
+                html += htmlSegment;
+            });
+
+            // -[ Insert Processed Data into DOM Elements ]-
+            let numPacientes = arrayPacientes.length;
+            let income_count = (numPacientes*1200).toLocaleString('en-US');
+
+            fila.innerHTML = html;
+            customersDOM.innerHTML = numPacientes;
+            income.innerHTML = income_count;
+ 
+        })
+    })
+    .catch(error =>{
+        // -[ Error Handler ]-
+        console.log(error);
+    })
+}
+fillTable();
+
+// JQuery Realtime Search
+$(document).ready(function() {
+    $("#search").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#fila tr").filter(function() {
+            $(this).toggle($(this).text()
+            .toLowerCase().indexOf(value) > -1)
+        });
+    });
+});

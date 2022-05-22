@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <title>Responsive Admin Panel🥦</title>
 </head>
 <body>
@@ -66,7 +67,7 @@
                 <!-- Search bar -->
                 <div class="search">
                     <label>
-                        <input type="text" placeholder="Buscar...">
+                        <input type="text" placeholder="Buscar..." id="search">
                         <ion-icon name="search-outline"></ion-icon>
                     </label>
                 </div>
@@ -79,7 +80,7 @@
             <div class="cardBox">
                 <div class="card">
                     <div>
-                        <div class="numbers" id="customers">error</div>
+                        <div class="numbers" id="customers">000</div>
                             <div class="cardName">Clientes</div>
                     </div>
                     <div class="iconBx">
@@ -88,7 +89,7 @@
                 </div>
                 <div class="card">
                     <div>
-                        <div class="numbers" id="income">error</div>
+                        <div class="numbers" id="income">000</div>
                             <div class="cardName">Ganancia Semanal</div>
                     </div>
                     <div class="iconBx">
@@ -112,7 +113,7 @@
                         <h2>Lista de Clientes</h2>
                         <a href="#" class="btn"><ion-icon name="person-add-outline"></ion-icon> Añadir</a>
                     </div>
-                    <table>
+                    <table id="tabla">
                         <thead>
                             <tr>
                                 <td>Nombre</td>
@@ -123,52 +124,7 @@
                         </thead>
                         <tbody id="fila">
                             <tr>
-                                <td id="name">Star Refrigerator</td>
-                                <td>$2000</td>
-                                <td>paid</td>
-                                <td><span class="status delivered">Delivered</span></td>
-                            </tr>
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$2000</td>
-                                <td>Pending</td>
-                                <td><span class="status pending">Pending</span></td>
-                            </tr>
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$2000</td>
-                                <td>Due</td>
-                                <td><span class="status inprogress">In progress</span></td>
-                            </tr>
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$2000</td>
-                                <td>Paid</td>
-                                <td><span class="status return">Return</span></td>
-                            </tr>
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$2000</td>
-                                <td>paid</td>
-                                <td><span class="status delivered">Delivered</span></td>
-                            </tr>
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$2000</td>
-                                <td>Pending</td>
-                                <td><span class="status pending">Pending</span></td>
-                            </tr>
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$2000</td>
-                                <td>Due</td>
-                                <td><span class="status inprogress">In progress</span></td>
-                            </tr>
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$2000</td>
-                                <td>Paid</td>
-                                <td><span class="status return">Return</span></td>
+                                <td></td>
                             </tr>
                         </tbody>
                     </table>

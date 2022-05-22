@@ -27,3 +27,15 @@ let income_count = (customers_count*1200).toLocaleString('en-US');
 // -[ Insert Processed Data into DOM Elements ]-
 customersDOM.innerHTML = customers_count;
 income.innerHTML = income_count;
+
+let data = fetch('/api/users')
+.then(response =>{
+    // -[ Response Handler ]-
+    response = response.json()
+    .then(res=>{
+        console.log(res);
+    })
+})
+.catch(error =>{
+    // -[ Error Handler ]-
+})

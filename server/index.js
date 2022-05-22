@@ -23,14 +23,6 @@ app.get('/', (req,res)=>{
 });
 
 // Fetch & Display on Terminal
-const mostrar = async ()=>{
-    personas = await userSchema.find()
-    personas.forEach(element => {
-       console.log(element.name); 
-    });
-    
-}
 
-console.log(mostrar())
 // Raising up Server.
 app.listen(PORT, ()=> console.log(`Server running through: http://localhost:${PORT}`))

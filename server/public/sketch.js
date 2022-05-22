@@ -56,8 +56,8 @@ function fillTable() {
                     <td class="name" id="name">${element.name}</td>
                     <td>$1,200</td>
                     <td>Pagado</td>
-                    <td><a href="#"><ion-icon name="pencil-outline"></ion-icon></a><a href="#" onclick="actionBtns()"><ion-icon name="locate-outline"></ion-icon></a><a href="#"><ion-icon name="trash-bin-outline"></ion-icon></a></td>
-                    <td><span id="status" class="status delivered">Activo</span></td>
+                    <td><a href="#"><ion-icon name="pencil-outline"></ion-icon></a><a href="#" ><ion-icon name="locate-outline"></ion-icon></a><a href="#"><ion-icon name="trash-bin-outline"></ion-icon></a></td>
+                    <td><span id="status" onclick="actionBtns(this)" class="status delivered">Activo</span></td>
                 </tr>
                 `;
                 html += htmlSegment;
@@ -90,21 +90,20 @@ $(document).ready(function() {
         });
     });
 });
+    let flag=false;
 
 // Action Buttons
-let flag=false;
-function actionBtns() {
-    let statu = document.getElementById('status');
+function actionBtns(td) {
     
     if (flag==false) {
-        statu.classList.remove('status', 'delivered');
-        statu.classList.add('status', 'pending');
-        statu.innerHTML='Pendiente';
+        td.classList.remove('status', 'delivered');
+        td.classList.add('status', 'pending');
+        td.innerHTML='Pendiente';
         flag=true;
-    }else{
-        statu.classList.remove('status', 'pending');
-        statu.classList.add('status', 'delivered');
-        statu.innerHTML='Activo';
+    }else if(flag==true){
+        td.classList.remove('status', 'pending');
+        td.classList.add('status', 'delivered');
+        td.innerHTML='Activo';
         flag=false;
     }
     

@@ -319,6 +319,7 @@ body{
      border-radius: 4px;
      font-size: 14px;
      font-weight: 500;
+     cursor: pointer;
 }
 .status.pending{
     padding: 2px 4px;
@@ -327,6 +328,7 @@ body{
     border-radius: 4px;
     font-size: 14px;
     font-weight: 500;
+    cursor: pointer;
 }
 .status.return{
     padding: 2px 4px;
@@ -335,6 +337,7 @@ body{
     border-radius: 4px;
     font-size: 14px;
     font-weight: 500;
+    cursor: pointer;
 }
 .status.inprogress{
     padding: 2px 4px;
@@ -343,6 +346,7 @@ body{
     border-radius: 4px;
     font-size: 14px;
     font-weight: 500;
+    cursor: pointer;
 }
 .recentCustomers{
     position: relative;
@@ -372,7 +376,7 @@ body{
     padding: 12px 10px;
 }
 .recentCustomers table tr td h4{
-    font-size: 16px;
+    font-size: 12px;
     font-weight: 500;
     line-height: 1.2em;
 }

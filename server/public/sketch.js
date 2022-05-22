@@ -4,6 +4,7 @@ let navigation = document.querySelector('.navigation');
 let main = document.querySelector('.main');
 let tablename = document.getElementById('name');
 let fila = document.getElementById('fila');
+
 let html = '';
 
 // -[ Sidebar Animation ]-
@@ -55,8 +56,8 @@ function fillTable() {
                     <td class="name" id="name">${element.name}</td>
                     <td>$1,200</td>
                     <td>Pagado</td>
-                    <td><span class="status delivered">Activo</span></td>
-                    <td><ion-icon name="locate-outline"></ion-icon><ion-icon name="pencil-outline"></ion-icon>   <ion-icon name="trash-bin-outline"></ion-icon> </td>
+                    <td><a href="#"><ion-icon name="pencil-outline"></ion-icon></a><a href="#" onclick="actionBtns()"><ion-icon name="locate-outline"></ion-icon></a><a href="#"><ion-icon name="trash-bin-outline"></ion-icon></a></td>
+                    <td><span id="status" class="status delivered">Activo</span></td>
                 </tr>
                 `;
                 html += htmlSegment;
@@ -89,3 +90,22 @@ $(document).ready(function() {
         });
     });
 });
+
+// Action Buttons
+let flag=false;
+function actionBtns() {
+    let statu = document.getElementById('status');
+    
+    if (flag==false) {
+        statu.classList.remove('status', 'delivered');
+        statu.classList.add('status', 'pending');
+        statu.innerHTML='Pendiente';
+        flag=true;
+    }else{
+        statu.classList.remove('status', 'pending');
+        statu.classList.add('status', 'delivered');
+        statu.innerHTML='Activo';
+        flag=false;
+    }
+    
+}

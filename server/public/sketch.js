@@ -56,6 +56,7 @@ function fillTable() {
                     <td>$1,200</td>
                     <td>Pagado</td>
                     <td><span class="status delivered">Activo</span></td>
+                    <td><ion-icon name="locate-outline"></ion-icon><ion-icon name="pencil-outline"></ion-icon>   <ion-icon name="trash-bin-outline"></ion-icon> </td>
                 </tr>
                 `;
                 html += htmlSegment;

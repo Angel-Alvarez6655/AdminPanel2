@@ -63,7 +63,7 @@ class TopBarElement extends HTMLElement{
                 <!-- Search bar -->
                 <div class="search">
                     <label>
-                        <input type="text" placeholder="Buscar..." id="search">
+                        <input type="text" placeholder="Buscar..." id="search" autofocus>
                         <ion-icon name="search-outline"></ion-icon>
                     </label>
                 </div>

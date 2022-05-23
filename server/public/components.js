@@ -49,7 +49,33 @@ class NavigatorElement extends HTMLElement{
         </div>`;
     }
     connectedCallback(){
-this.innerHTML = this.thing;
+        this.innerHTML = this.thing;
     }
 }
+class TopBarElement extends HTMLElement{
+    constructor(){
+        super();
+        this.element = 
+        `<div class="topbar">
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </div>
+                <!-- Search bar -->
+                <div class="search">
+                    <label>
+                        <input type="text" placeholder="Buscar..." id="search">
+                        <ion-icon name="search-outline"></ion-icon>
+                    </label>
+                </div>
+                <!-- User Image -->
+                <div class="user">
+                    <img src="./Assets/user.jpg" alt="user profile">
+                </div>
+            </div>`;
+    }
+    connectedCallback(){
+        this.innerHTML = this.element;
+    }
+}
+window.customElements.define("top-bar", TopBarElement)
 window.customElements.define("navigation-bar", NavigatorElement)

@@ -94,13 +94,13 @@ $(document).ready(function() {
 
 // Action Buttons
 function actionBtns(td) {
-    
-    if (flag==false) {
+    let estado = td.textContent;
+    if (estado=="Activo") {
         td.classList.remove('status', 'delivered');
         td.classList.add('status', 'pending');
         td.innerHTML='Pendiente';
         flag=true;
-    }else if(flag==true){
+    }else if(estado=="Pendiente"){
         td.classList.remove('status', 'pending');
         td.classList.add('status', 'delivered');
         td.innerHTML='Activo';

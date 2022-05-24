@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 // Schema Definition 
-const userSchema = mongoose.Schema({
+const customerSchema = mongoose.Schema({
     name: {
       type: String,
       required: true,
@@ -13,8 +13,23 @@ const userSchema = mongoose.Schema({
     email: {
       type: String,
       required: true
-  
+    },
+    details: {
+      type: String,
+      required: true,
+    },
+    quota:{
+      type: Number,
+      required: true
+    },
+    status:{
+      type: Boolean,
+      required: false
+    },
+    paid:{
+      type: Boolean,
+      required: true 
     }
   });
   
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('Customer', customerSchema);

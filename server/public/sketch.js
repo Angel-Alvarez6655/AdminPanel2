@@ -28,7 +28,7 @@ let customersDOM = document.getElementById('customers');
 let income = document.getElementById('income');
 
 function getCustomersCount() {
-    fetch('/api/users')
+    fetch('/api/customer')
     .then(response =>{
         // -[ Response Handler ]-
         response = response.json()
@@ -42,7 +42,7 @@ getCustomersCount();
 
 function fillTable() {
     // -[ Fetch Data on page Load ]-
-    fetch('/api/users')
+    fetch('/api/customer')
     .then(response =>{
         // -[ Response Handler ]-
         response = response.json()
@@ -54,10 +54,10 @@ function fillTable() {
                 let htmlSegment = `
                 <tr>
                     <td class="name" id="name">${element.name}</td>
-                    <td>$1,200</td>
-                    <td>Pagado</td>
+                    <td>$${(element.quota).toLocaleString('en-US')}</td>
+                    <td>${(element.paid==true?"Pagado":"No pagado")}</td>
                     <td><a href="#"><ion-icon name="pencil-outline"></ion-icon></a><a href="#" ><ion-icon name="locate-outline"></ion-icon></a><a href="#"><ion-icon name="trash-bin-outline"></ion-icon></a></td>
-                    <td><span id="status" onclick="actionBtns(this)" class="status delivered">Activo</span></td>
+                    <td>${(element.status==true?"<span id='status' onclick='actionBtns(this)' class='status delivered'>Activo</span>":"<span id='status' onclick='actionBtns(this)' class='status pending'>Pendiente</span>")}</td>
                 </tr>
                 `;
                 html += htmlSegment;

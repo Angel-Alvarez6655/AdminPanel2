@@ -1,11 +1,11 @@
 const express = require("express");
-const userSchema = require("../models/Customer");
+const customerSchema = require("../models/Customer");
 
 const router = express.Router();
 
 // create user
-router.post("/users", (req, res) => {
-  const user = userSchema(req.body);
+router.post("/customer", (req, res) => {
+  const user = customerSchema(req.body);
   user
     .save()
     .then((data) => res.json(data))
@@ -13,8 +13,8 @@ router.post("/users", (req, res) => {
 });
 
 // get all users
-router.get("/users", (req, res) => {
-  userSchema
+router.get("/customer", (req, res) => {
+  customerSchema
     .find()
     .then((data) => {
       listaPacientes = data;
@@ -23,28 +23,28 @@ router.get("/users", (req, res) => {
 });
 
 // get a user
-router.get("/users/:id", (req, res) => {
+router.get("/customer/:id", (req, res) => {
   const { id } = req.params;
-  userSchema
+  customerSchema
     .findById(id)
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
 
 // delete a user
-router.delete("/users/:id", (req, res) => {
+router.delete("/customer/:id", (req, res) => {
   const { id } = req.params;
-  userSchema
+  customerSchema
     .deleteOne({ _id: id })
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
 
 // update a user
-router.put("/users/:id", (req, res) => {
+router.put("/customer/:id", (req, res) => {
   const { id } = req.params;
   const { name, age, email } = req.body;
-  userSchema
+  customerSchema
     .updateOne({ _id: id }, { $set: { name, age, email } })
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));

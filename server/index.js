@@ -1,8 +1,7 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const userSchema = require('./models/Customer')
-const userRoutes = require('./routes/Customer')
+const customerRoutes = require('./routes/Customer')
 require('dotenv').config();
 
 const PORT = process.env.PORT || 5050;
@@ -10,7 +9,7 @@ const PORT = process.env.PORT || 5050;
 // Middlewares 
 app.use(express.json());
 app.use(express.static('public'));
-app.use('/api', userRoutes);
+app.use('/api', customerRoutes);
 
 // MongoDB Connection.
 mongoose.connect(process.env.MONGODB_URI)

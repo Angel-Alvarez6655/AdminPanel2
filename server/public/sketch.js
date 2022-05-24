@@ -49,7 +49,6 @@ function fillTable() {
         .then(res=>{
             arrayPacientes = res.listaPacientes;
             arrayPacientes.forEach(element => {
-                console.log(element.name);
                 // -[ Table Construction ]-
                 let htmlSegment = `
                 <tr>
@@ -65,6 +64,7 @@ function fillTable() {
 
             // -[ Insert Processed Data into DOM Elements ]-
             let numPacientes = arrayPacientes.length;
+            
             let income_count = (numPacientes*1200).toLocaleString('en-US');
 
             fila.innerHTML = html;

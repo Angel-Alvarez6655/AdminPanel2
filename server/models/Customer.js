@@ -12,7 +12,11 @@ const customerSchema = mongoose.Schema({
     },
     email: {
       type: String,
-      required: true
+      required: false
+    },
+    cellphone:{
+      type: Number,
+      required: false
     },
     details: {
       type: String,

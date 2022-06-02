@@ -1,0 +1,103 @@
+let list = document.querySelectorAll('.navigation li');
+let toggle = document.querySelector('.toggle');
+let navigation = document.querySelector('.navigation');
+let main = document.querySelector('.main');
+let tablename = document.getElementById('name');
+let fila = document.getElementById('fila');
+
+let html = '';
+
+// -[ Sidebar Animation ]-
+function activeLink(){
+    list.forEach((item)=>
+        item.classList.remove('hovered'));
+        this.classList.add('hovered');
+}
+
+list.forEach((item)=>
+item.addEventListener('mouseover',activeLink));
+
+// -[ Toggle Menu ]-
+toggle.onclick = function (){
+    navigation.classList.toggle('active');
+    main.classList.toggle('active');
+}
+
+// -[ Cards Data Processing ]-
+let customersDOM = document.getElementById('customers');
+let income = document.getElementById('income');
+
+function getCustomersCount() {
+    fetch('/api/customer')
+    .then(response =>{
+        // -[ Response Handler ]-
+        response = response.json()
+        .then(res=>{
+            numPacientes = res.listaPacientes.length;
+            console.log(numPacientes);
+        })
+    })
+}
+getCustomersCount();
+
+function fillTable() {
+    // -[ Fetch Data on page Load ]-
+    fetch('/api/customer')
+    .then(response =>{
+        // -[ Response Handler ]-
+        response = response.json()
+        .then(res=>{
+            arrayPacientes = res.listaPacientes;
+            arrayPacientes.forEach(element => {
+                // -[ Table Construction ]-
+                let htmlSegment = `
+                <tr>
+                    <td>${element.name}</td>
+                    <td>${element.cellphone==undefined?"N/A":element.cellphone}</td>
+                    <td>$${(element.quota).toLocaleString('en-US')}</td>
+                    <td>${(element.paid==true?"Pagado":"No pagado")}</td>
+                    <td><a href="#"><ion-icon name="pencil-outline"></ion-icon></a><a href="#" ><ion-icon name="locate-outline"></ion-icon></a><a href="#"><ion-icon name="trash-bin-outline"></ion-icon></a></td>
+                    <td>${(element.status==true?"<span id='status' onclick='actionBtns(this)' class='status delivered'>Activo</span>":"<span id='status' onclick='actionBtns(this)' class='status pending'>Pendiente</span>")}</td>
+                </tr>
+                `;
+                html += htmlSegment;
+            });
+
+            fila.innerHTML = html;
+        })
+    })
+    .catch(error =>{
+        // -[ Error Handler ]-
+        console.log(error);
+    })
+}
+fillTable();
+
+// JQuery Realtime Search
+$(document).ready(function() {
+    $("#search").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#fila tr").filter(function() {
+            $(this).toggle($(this).text()
+            .toLowerCase().indexOf(value) > -1)
+        });
+    });
+});
+    let flag=false;
+
+// Action Buttons
+function actionBtns(td) {
+    let estado = td.textContent;
+    if (estado=="Activo") {
+        td.classList.remove('status', 'delivered');
+        td.classList.add('status', 'pending');
+        td.innerHTML='Pendiente';
+        flag=true;
+    }else if(estado=="Pendiente"){
+        td.classList.remove('status', 'pending');
+        td.classList.add('status', 'delivered');
+        td.innerHTML='Activo';
+        flag=false;
+    }
+    
+}
